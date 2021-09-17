@@ -1,0 +1,277 @@
+<html lang="en">
+
+<head>
+    <title>hai this is guru</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <title>POST METHOD</title>
+    <style>
+        .align {
+            text-align: center;
+        }
+    </style>
+</head>
+<p> {response: "welcome to API GATEWAY",
+    environment: process.env.NODE_ENV,
+    deployedOn: currentDate }</p>
+
+
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <button type="button" onclick="clickHandler()">send Sensors data</button>
+    <!-- <button onclick="fetch">SEND BODY</button> -->
+    <h1 class="align">JavaScreipt's Fetch api</h1>
+    <h2 class="align">POST method</h2>>
+    <input type="text" placeholder="IOT_SERVICE/" id="myUrl" />
+    <textarea type="text" placeholder="Type something..." id="myBody" style="height: 300px;"></textarea>
+    <button type="button" onclick="getInputValue()">
+        send body
+    </button>
+    <script>
+          var socket = io();
+
+          //FIRST ACTION hapens wheN the page opens firSt time , this is one time activity 
+                socket.on('connection', function (socket) { 
+                    console.log('socket has been connected');
+                    console.log(socket) 
+                });
+
+                //this iS a custom event regoistered at sErver side
+        socket.on('testerEvent', function (data) { document.write(data.description) });
+        
+
+        //Thi seven Is caLled whEn  the server sends the data back to the client
+        socket.on('successResponseFromServer', function (data) { 
+            //evalaute the requestGuid from the dictionary and then match and then show themessgae in console
+            console.log(data);
+            //for find you can use 'Filter' 
+            //remove the item from the dictionary /array
+         });
+
+         //this is the event which is called when the server register the socket id and sends back the socket id
+        socket.on('socketIdFromServer', function (data) {
+            console.log(data) 
+            sessionStorage.setItem('socket_id',data.socket_id);
+        });
+        function getInputValue() {
+
+            // Selecting the input element and get its value 
+            var postUrl = document.getElementById("myUrl").value;
+            var postBody = document.getElementById("myBody").value;
+
+            console.log(postBody);
+            var str = JSON.parse(postBody);
+          
+
+
+       
+
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+
+        }
+
+        class Request{
+            constructor(){
+                this.request_guid = '';
+                this.socket_id = '';
+            }
+            }
+            var dict_to_store_all_requests =  [];
+            var request = new Request();
+            request.socket_id = sessionStorage.getItem('socket_id');
+            request.request_guid = uuidv4();
+            dict_to_store_all_requests.push(request);
+
+            str.SocketId = request.socket_id,
+            // str.RequestGuid = request.request_guid
+            
+             
+        
+            //address of api gateway running on your localhost at port 4000  (iot-microservice 4001)
+        
+            fetch(postUrl, {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(str)
+            })
+
+            .then(response => response.json())
+            .then(json => console.log(json))
+        }
+
+    </script>
+    <!-- <script>
+        function clickHandler() {
+            var object = {
+                "DataCollection": [
+                    {
+                        "sensorCode": "38",
+
+
+                        "description": "bbbbw ganesh",
+
+
+                        "measuringUnit": 4,
+
+                        "sensorTypeId": 2
+                    }
+                ]
+            }
+            class Request{
+            constructor(){
+                this.request_guid = '';
+                this.socket_id = '';
+            }
+            }
+            function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+
+        }
+        var dict_to_store_all_requests =  [];
+            var request = new Request();
+            request.socket_id = sessionStorage.getItem('socket_id');
+            request.request_guid = uuidv4();
+            dict_to_store_all_requests.push(request);
+            var object_guid={
+            "socketId" : request.socket_id,
+            "guid" : request.request_guid
+            }
+            console.log(object_guid);
+            var json_object = JSON.parse(object);
+            json_object.push(object_guid);
+            //object.push(object_guid);
+            var socket = io();
+
+            //address of api gateway running on your localhost at port 3000  (iot-microservice 3001)
+            fetch('https://localhost:4000/IOT_SERVICE/SENSORS', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(json_object)
+            })
+
+                .then(response => response.json())
+                .then(json => console.log(json))
+        }
+    </script> -->
+
+
+    <!-- <br>
+<button id="connect" onclick="connectConnection()" class="connect">Connect</button>
+<button id="disconnect" onclick="disconnectConnection()" class="disconnect">Disconnect</button>
+
+
+<br><br><br>
+
+
+<br> <br><br> -->
+
+
+    <!-- <script src="http://localhost:4000/socket.io"></script> -->
+    <!-- <script>
+
+        let headers = new Headers();
+        headers.append('Access-Control-Allow-Origin', 'http://api-gateway.dev.atpltd.net');
+        var socket = io("https://localhost");
+        var socketid = "";
+
+        socket.on('connect', function () {
+            socketid = socket.id;
+        });
+
+
+
+        socket.on('message', function (data) {
+
+            str = JSON.parse(JSON.parse(data));
+
+
+            document.getElementById('iot_device_id').innerHTML = str["iot_device_id"];
+            document.getElementById('Volts-Solar').innerHTML = str["Volts-Solar"];
+            document.getElementById('Amps-Solar').innerHTML = str["Amps-Solar"];
+            document.getElementById('Gyro-X').innerHTML = str["Gyro-X"];
+            document.getElementById('Gyro-Y').innerHTML = str["Gyro-Y"];
+            document.getElementById('Gyro-Z').innerHTML = str["Gyro-Z"];
+
+            console.log(str["iot_device_id"]);
+
+
+        });
+
+      // EXAMPLE JSON WHICH COMES FROM THE DEVICE-SIDE. 
+
+        /* {"project_id":6,
+            "client_id":4,
+            "iot_device_id":3,
+            "Volts-Battery":0.43,
+            "Volts-Solar":0.007167,
+            "Amps-Solar":30,
+            "Gyro-X":225,
+            "Gyro-Y":225, 
+            "Gyro-Z":225,
+            "recording_date_time":"Tue Feb 23 18:14:46 2021"
+            }
+         */
+
+        function connectConnection() {
+
+            var e = document.getElementById("device");
+        
+            var deviceid = e.options[e.selectedIndex].value;
+            console.log(typeof deviceid);
+            console.log(deviceid);
+            var url1 = "https://localhost";
+
+            var url2 = url1.concat(deviceid + "/");
+            var finalurl = url2.concat(socketid);
+
+
+            let request = new XMLHttpRequest(); request.open("GET", finalurl);
+            request.onload = function () {
+                var response = request.responseText;
+
+                alert(response);
+
+            }
+            request.send();
+
+        }
+
+        function disconnectConnection() {
+
+            var e = document.getElementById("device");
+            var deviceid = e.options[e.selectedIndex].value;
+            var url1 = "https://localhost/";
+
+
+
+            var url2 = url1.concat(deviceid + "/");
+            var finalurl = url2.concat(socketid);
+
+
+
+            let request = new XMLHttpRequest(); request.open("GET", finalurl);
+            request.onload = function () {
+                var response = request.responseText;
+
+                alert(response);
+
+            }
+            request.send();
+        }
+
+
+
+
+    </script> -->
+
+</body>
+
+</html>

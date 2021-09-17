@@ -1,0 +1,14 @@
+<form #testcaseForm="ngForm" (ngSubmit)="onSubmit(testcaseForm)">
+    <label *ngIf="testcaseForm.value.id">Problem id:</label>
+    <input disabled *ngIf="testcaseForm.value.id" id="id"  type="text" name="id" [(ngModel)]="testcase.id"> <br><br>
+    <label >Problem Id:</label>
+    <input id="txtpid" type="text" name="Problem_id" [(ngModel)]="testcase.Problem_id"> <br><br>
+    <label class= 'text'> Expected Input: </label>
+    <textarea id="txti" type="textarea" name="Expected_Input" [(ngModel)]="testcase.Expected_Input"> </textarea><br><br>
+    <label class='text'>Expected Output: </label>
+    <textarea id="txto" type="textarea" name="Expected_Output" [(ngModel)]="testcase.Expected_Output"></textarea> <br><br>
+    
+    <div class="form.action.buttons">
+        <input type= "submit" value="submit">
+    </div>
+</form>

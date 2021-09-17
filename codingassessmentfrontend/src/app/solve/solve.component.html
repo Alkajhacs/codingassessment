@@ -1,0 +1,72 @@
+<div class="main">
+    <div class="problem-statement">
+        <form #problemForm="ngForm">
+            <h4>Problem id:</h4>
+            <p id="id">{{problem.id}}</p>
+            <h4 class='text'>Problem Name:</h4>
+            <p id="txtp"> {{problem.Problem_Name}} </p>
+            <h4 class='text'>Problem:</h4>
+            <p id="txtp"> {{problem.Problem}} </p>
+            <h4  *ngIf="problem.Input" class='text'> Input: </h4>
+            <p *ngIf="problem.Input" id="txti"> {{problem.Input}}</p>
+            <h4 class='text'> Output: </h4>
+            <p id="txto">{{problem.Output}}</p>
+            <h4 class='text' *ngIf="problem.Constraints">Constraints: </h4>
+            <p id="txtc" *ngIf="problem.Constraints">{{problem.Constraints}} </p>
+            <h4 *ngIf="problem.Example" class='text'>Example: </h4>
+            <p id="txte" *ngIf="problem.Example">{{problem.Example}}</p>
+            <div class="testcase1" id="tbody" *ngFor="let t of testcases; let i=index; let last= last" >
+                <h3>Testcase {{i+1}}</h3>
+                <h4 *ngIf="t.Expected_Input" class='text'> Input: </h4>
+                <p #ei id="txti"> {{t.Expected_Input}}</p>
+                <h4 class='text'> Output: </h4>
+                <p #eo id="txto"> {{t.Expected_Output}}</p>
+                <button [disabled]="!solution" (click)="testcasecheck(t.Expected_Input, t.Expected_Output, solutionForm, last,i)">check testcase </button>
+
+            </div>
+        </form>
+    </div>
+    <div class="solutiontext">
+        <form #solutionForm="ngForm" (ngSubmit)="onSubmit(solutionForm)">
+            <label for="solution">Enter code here</label>
+            <label class="selectl">Select language</label>
+            <select name="languages" (change)="selectchangehandler($event)">
+                <option value="75">C (Clang 7.0.1)</option>
+                <option value="76">C++ (Clang 7.0.1)</option>
+            </select>
+            <!-- <h4 class='text'>Duration: </h4>
+            <p id="txtd" >{{problem.Duration}}</p>
+            <h4 class='text'>Marks: </h4>
+            <p id="txtd" >{{problem.Marks}}</p> -->
+            <textarea name="solution" [(ngModel)]="solution" class="solution"></textarea><br>
+            <div class="userio">
+                <div>
+                    <label>Enter Input</label><br>
+                    <textarea name="input" [(ngModel)]="input" class="input"></textarea>
+                </div>
+                <div>
+                    <label>Output</label><br>
+                    <textarea readonly disabled name="output" [(ngModel)]="output" class="output">{output}</textarea>
+                </div>
+            </div>
+            <div class="expected" *ngIf="check">
+                <div>
+                    <label>Expected Input</label><br>
+                    <textarea readonly disabled name="einput" [(ngModel)]="einput" class="input"></textarea> 
+                </div>
+                <div>
+                    <label>Expected Output</label><br>
+                    <textarea readonly disabled name="eoutput" [(ngModel)]="eoutput" class="output">{output}</textarea>
+                </div>
+            </div>
+
+            <div class="form.action.buttons">
+                <input [disabled]="!solution" type="submit" value="Run">
+            </div><br>
+        </form>
+        <div>
+            <button (click)="Result()"> Result</button>
+        </div>
+
+    </div>
+</div>

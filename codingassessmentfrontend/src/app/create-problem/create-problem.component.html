@@ -1,0 +1,31 @@
+<form #problemForm="ngForm" (ngSubmit)="onSubmit(problemForm)">
+    <label *ngIf="problemForm.value.id">Problem id:</label>
+    <input disabled *ngIf="problemForm.value.id" id="id" type="text" name="id" [(ngModel)]="problem.id"> <br><br>
+    <label>Problem Name:</label>
+    <input id="txtname" type="text" name="Problem_Name" [(ngModel)]="problem.Problem_Name"> <br><br>
+    <label class='text'>Problem:</label>
+    <textarea id="txtp" name="Problem" [(ngModel)]="problem.Problem"> </textarea> <br><br>
+    <label class='text'> Input: </label>
+    <textarea id="txti" type="textarea" name="Input" [(ngModel)]="problem.Input"> </textarea><br><br>
+    <label class='text'> Output: </label>
+    <textarea id="txto" type="textarea" name="Output" [(ngModel)]="problem.Output"></textarea> <br><br>
+    <label class='text'>Constraints: </label>
+    <textarea id="txtc" type="textarea" name="Constraints" [(ngModel)]="problem.Constraints"> </textarea><br><br>
+    <label class='text'>Example: </label>
+    <textarea id="txte" type="textarea" name="Example" [(ngModel)]="problem.Example"> </textarea><br><br>
+    <label class='text'>Duration: </label>
+    <input id="txtd" type="text" name="Duration" [(ngModel)]="problem.Duration" placeholder="hh:mm:ss" pattern="[a-z]{1,15}" title="Enter duration in range or in hh:mm:ss format"/><br><br>
+    <label class='text'>Marks: </label>
+    <textarea id="txtm" type="textarea" name="Marks" [(ngModel)]="problem.Marks"> </textarea><br><br>
+    <div class="testcase1" id="tbody" *ngFor="let t of testcases; let i=index; let last= last">
+        <h3  >Testcase {{i+1}}</h3>
+        <label  class='text'> Input: </label>
+        <textarea id="txti"> {{t.Expected_Input}}</textarea>
+            <label   class='texte'> Output: </label>
+            <textarea   id="txteo"> {{t.Expected_Output}}</textarea>
+    
+    </div>
+    <div class="form.action.buttons">
+        <input type= "submit" value="submit">
+    </div>
+</form>

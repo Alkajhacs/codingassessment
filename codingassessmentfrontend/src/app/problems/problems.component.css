@@ -1,0 +1,17 @@
+
+.problems {
+    width: 70%;
+    border-collapse: collapse;
+    text-align: left;
+    padding: 15px;
+}
+
+.problems th {
+    height: 30px;
+    text-align: center;
+}
+
+.problems th, td {
+    border: 1px solid black;
+    text-align: center;
+}

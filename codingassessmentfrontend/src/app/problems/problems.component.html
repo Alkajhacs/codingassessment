@@ -1,0 +1,44 @@
+<form>
+    <input #searchvalue type="text" name="search" ngModel [(ngModel)]="search" />
+    <button type="submit" (click)="SearchP(searchvalue.value)">Search</button>
+</form>
+<table class="problems">
+    <thead>
+        <tr style="background-color: cornflowerblue;">
+            <th (click)="sort(0)"><u>id</u></th>
+            <th (click)="sort(1)"><u>Problem</u> </th>
+            <th><u>OPerations</u></th>
+        </tr>
+    </thead>
+    <tbody class="data" id="tbody" *ngFor="let p of problems">
+        <tr>
+            <td>{{p.id}}</td>
+            <td>{{p.Problem_Name}}</td>
+            <td>
+                <button><a [routerLink]="['create/testcase', p.id]" style="color: blue;"><u>Add Test
+                            Cases</u></a></button>
+                <button> <a [routerLink]="['solve',p.id]"><u>Solve</u></a> </button>
+                <button><a [routerLink]="['create', p.id]" style="color: blue;"><u>Edit</u></a></button>
+
+                <!-- <button><a [routerLink]="['create', p.id]" style="color: blue;"><u>Create testcases</u></a></button> -->
+                <button style="color: blue;"><u>delete</u></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table>
+    <td>
+        <button class="button_page" (click)="page1()" (click)="getproblem()">-</button>
+    </td>
+    <td>....</td>
+    <td>
+        Page no {{value}}
+    </td>
+    <td>....</td>
+    <td>
+        <button class="button_page" (click)="page()" (click)="getproblem()">+</button>
+    </td>
+
+</table>

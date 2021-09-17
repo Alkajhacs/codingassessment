@@ -1,0 +1,29 @@
+li {
+    display: inline;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 20px;
+    color: #000000;
+}
+.navbar {
+    background-color: #2EE8c9;
+}
+.div2 {
+    width: 80%;
+}
+.nav-container {
+    display: flex;
+    align-items: center;
+}
+
+ul {
+    float: right;
+}
+
+a {
+    text-decoration: none;
+}
+
+img{
+    width: 3cm
+}

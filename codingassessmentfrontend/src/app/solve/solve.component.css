@@ -1,0 +1,48 @@
+.problem-statement {
+    width: 35%
+}
+
+.main{
+    display: flex;
+}
+
+.solution{
+    width: 700px;
+    height: 300px;
+    justify-content: center;
+}
+
+.selectl{
+    margin-left: 5cm;
+}
+
+.userio{
+    display: flex;
+    margin-left: 3rem;
+}
+
+.userio div{
+    margin: 3rem;
+}
+
+.expected{
+    display: flex;
+    margin-left: 3rem;
+}
+
+
+.expected div{
+    margin: 3rem;
+}
+
+.testcase1{
+    border: 2rem;
+}
+
+p{
+    margin-top: -1rem;
+}
+
+.solutiontext{
+    justify-content: center;
+}
